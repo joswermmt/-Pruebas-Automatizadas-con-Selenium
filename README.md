@@ -66,10 +66,3 @@ Remove-Item Env:SELENIUM_HEADLESS -ErrorAction SilentlyContinue
 - Con el servidor manual **no** hace falta para pytest: los tests levantan un servidor Flask en un puerto libre.
 - Puedes definir otra contraseña demo con la variable de entorno `DEMO_PASSWORD` antes de borrar `instance/inventario.sqlite3` o ejecutar `flask --app wsgi init-db`.
 
-## Entregables de la asignatura (fuera de este repo)
-
-1. **GitHub:** sube este proyecto y entrega el enlace público.
-2. **Jira o Azure DevOps:** crea las historias con criterios de aceptación y rechazo; puedes partir de `docs/historias-para-jira-azure-devops.md` (el contenido oficial debe vivir en el tablero, no solo en archivos).
-3. **Video:** YouTube u OneDrive mostrando la ejecución de las pruebas y el reporte.
-4. **Permisos** a los correos indicados en la tarea para repositorio, tablero y video.
-# -Pruebas-Automatizadas-con-Selenium
