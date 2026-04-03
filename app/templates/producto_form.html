@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ titulo }} — Inventario{% endblock %}
+{% block body %}
+<h1 data-testid="form-producto-title">{{ titulo }}</h1>
+<form method="post" class="card" data-testid="form-producto">
+  <label for="nombre">Nombre</label>
+  <input id="nombre" name="nombre" type="text" maxlength="120" value="{{ nombre }}" data-testid="input-nombre" required>
+
+  <label for="cantidad">Cantidad</label>
+  <input id="cantidad" name="cantidad" type="number" min="0" step="1" value="{{ cantidad }}" data-testid="input-cantidad">
+
+  <label for="descripcion">Descripción</label>
+  <textarea id="descripcion" name="descripcion" rows="3" data-testid="input-descripcion">{{ descripcion }}</textarea>
+
+  <div class="actions-row">
+    <button type="submit" data-testid="btn-guardar-producto">Guardar</button>
+    <a href="{{ url_for('main.lista_productos') }}" data-testid="btn-cancelar-producto">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

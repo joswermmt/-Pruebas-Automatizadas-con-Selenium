@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Inventario{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('main.lista_productos') }}" data-testid="link-home">Inventario ITLA</a>
+    {% if session.user_id %}
+    <nav>
+      <span class="user" data-testid="user-label">{{ session.username }}</span>
+      <a href="{{ url_for('main.logout') }}" data-testid="link-logout">Cerrar sesión</a>
+    </nav>
+    {% endif %}
+  </header>
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-list">
+        {% for category, message in messages %}
+          <li class="flash flash-{{ category }}" data-testid="flash-{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+  </main>
+</body>
+</html>

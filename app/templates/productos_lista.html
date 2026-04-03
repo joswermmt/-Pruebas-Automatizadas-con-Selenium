@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Productos — Inventario{% endblock %}
+{% block body %}
+<div class="toolbar">
+  <h1 data-testid="lista-title">Productos</h1>
+  <a class="btn primary" href="{{ url_for('main.producto_nuevo') }}" data-testid="btn-nuevo-producto">Nuevo producto</a>
+</div>
+
+{% if productos %}
+<table class="data-table" data-testid="tabla-productos">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Cantidad</th>
+      <th>Descripción</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in productos %}
+    <tr data-testid="fila-producto-{{ p.id }}">
+      <td data-testid="celda-id-{{ p.id }}">{{ p.id }}</td>
+      <td data-testid="celda-nombre-{{ p.id }}">{{ p.nombre }}</td>
+      <td>{{ p.cantidad }}</td>
+      <td>{{ p.descripcion }}</td>
+      <td class="actions">
+        <a href="{{ url_for('main.producto_editar', pid=p.id) }}" data-testid="btn-editar-{{ p.id }}">Editar</a>
+        <form method="post" action="{{ url_for('main.producto_eliminar', pid=p.id) }}" class="inline-form">
+          <button type="submit" class="link danger" data-testid="btn-eliminar-{{ p.id }}">Eliminar</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p data-testid="lista-vacia">No hay productos. Cree uno nuevo.</p>
+{% endif %}
+{% endblock %}

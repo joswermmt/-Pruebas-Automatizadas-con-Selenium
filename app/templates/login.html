@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Iniciar sesión — Inventario{% endblock %}
+{% block body %}
+<h1 data-testid="login-title">Iniciar sesión</h1>
+<form method="post" class="card" data-testid="form-login" action="{{ url_for('main.login') }}">
+  <label for="username">Usuario</label>
+  <input id="username" name="username" type="text" autocomplete="username" data-testid="input-username" required>
+
+  <label for="password">Contraseña</label>
+  <input id="password" name="password" type="password" autocomplete="current-password" data-testid="input-password" required>
+
+  {% if request.args.get('next') %}
+  <input type="hidden" name="next" value="{{ request.args.get('next') }}">
+  {% endif %}
+  <button type="submit" data-testid="btn-login">Entrar</button>
+</form>
+{% endblock %}
